@@ -6,7 +6,7 @@
 /*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/30 15:10:47 by gojeda            #+#    #+#             */
-/*   Updated: 2025/12/01 19:13:55 by gavivas-         ###   ########.fr       */
+/*   Updated: 2025/12/01 22:05:50 by gavivas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ void	lexer_destroy(t_lexer *lex)
 	while (lex->head)
 	{
 		tmp = lex->head->next;
+		if (lex->head->value)
+			free(lex->head->value);
 		if (lex->head->segments)
 			free_segments(lex->head->segments);
 		free(lex->head);
