@@ -6,7 +6,7 @@
 /*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 20:31:40 by gavivas-          #+#    #+#             */
-/*   Updated: 2025/12/01 20:57:07 by gavivas-         ###   ########.fr       */
+/*   Updated: 2025/12/01 22:00:46 by gavivas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,19 @@ void	lexer_print(t_lexer *lx)
 			case TOKEN_WORD:
 			{
 				printf("WORD: ");
-				s = tok->segments;
-				while (s)
+				if (tok->segments != NULL)
 				{
-					printf("(%s|%s) ", s->str, s->expand ? "exp" : "lit");
-					s = s->next;
+					s = tok->segments;
+					while (s)
+					{
+						printf("(%s|%s) ",
+							s->str,
+							s->expand ? "exp" : "lit");
+						s = s->next;
+					}
 				}
+				else if (tok->value != NULL)
+					printf("%s", tok->value);
 				printf("\n");
 				break ;
 			}
