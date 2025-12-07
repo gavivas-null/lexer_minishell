@@ -6,7 +6,7 @@
 /*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/30 15:31:04 by gojeda            #+#    #+#             */
-/*   Updated: 2025/12/01 19:13:49 by gavivas-         ###   ########.fr       */
+/*   Updated: 2025/12/07 19:36:49 by gavivas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,11 @@ t_lexer	*lexer_tokenize(const char *line)
 			handle_in_dquote(lx, line, &i, &state);
 		if (lx->error)
 			break ;
+	}
+	if (state != NORMAL)
+	{
+		lexer_destroy(lx);
+		return (NULL);
 	}
 	if (finalize_lexer(lx))
 		return (NULL);
