@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gojeda <gojeda@student.42madrid.com>       +#+  +:+       +#+        */
+/*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/11 12:18:58 by gojeda            #+#    #+#             */
-/*   Updated: 2025/04/11 12:19:00 by gojeda           ###   ########.fr       */
+/*   Created: 2024/08/19 18:53:36 by gavivas-          #+#    #+#             */
+/*   Updated: 2024/08/19 18:56:31 by gavivas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,16 @@
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char	*s3;
-	char	*tmp;
-	size_t	s1_len;
-	size_t	s2_len;
+	char	*newstr;
+	size_t	len;
+	size_t	slen;
 
-	if (!s1 || !s2)
+	len = ft_strlen(s1);
+	slen = ft_strlen(s2);
+	newstr = malloc(sizeof(char) * (len + slen + 1));
+	if (newstr == NULL)
 		return (NULL);
-	s1_len = ft_strlen(s1);
-	s2_len = ft_strlen(s2);
-	s3 = (char *) malloc((s1_len + s2_len + 1) * sizeof(char));
-	if (!s3)
-		return (NULL);
-	tmp = s3;
-	while (*s1)
-		*tmp++ = *s1++;
-	while (*s2)
-		*tmp++ = *s2++;
-	*tmp = '\0';
-	return (s3);
+	ft_memcpy(newstr, s1, len);
+	ft_memcpy(newstr + len, s2, slen + 1);
+	return (newstr);
 }

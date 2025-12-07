@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gojeda <gojeda@student.42mdrid.com>        +#+  +:+       +#+        */
+/*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/10 15:44:47 by gojeda            #+#    #+#             */
-/*   Updated: 2025/04/10 15:44:49 by gojeda           ###   ########.fr       */
+/*   Created: 2024/08/19 18:54:38 by gavivas-          #+#    #+#             */
+/*   Updated: 2025/10/27 19:49:16 by gavivas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char	*ptr;
-	size_t	s_len;
+	char	*substr;
+	size_t	slen;
 
-	if (!s)
+	if (s == NULL)
 		return (NULL);
-	s_len = ft_strlen(s);
-	if (start >= s_len)
+	slen = ft_strlen(s);
+	if (start > slen)
 		return (ft_strdup(""));
-	if (len > s_len - start)
-		len = s_len - start;
-	ptr = malloc (len + 1);
-	if (!ptr)
+	if (slen - start < len)
+		len = slen - start;
+	substr = malloc(sizeof(char) * len + 1);
+	if (substr == NULL)
 		return (NULL);
-	ft_strlcpy(ptr, &s[start], len + 1);
-	return (ptr);
+	ft_strlcpy(substr, &s[start], len + 1);
+	return (substr);
 }

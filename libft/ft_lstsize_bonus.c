@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gojeda <gojeda@student.42madrid.com>       +#+  +:+       +#+        */
+/*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/14 13:15:56 by gojeda            #+#    #+#             */
-/*   Updated: 2025/04/14 13:15:59 by gojeda           ###   ########.fr       */
+/*   Created: 2024/08/19 18:52:37 by gavivas-          #+#    #+#             */
+/*   Updated: 2024/08/19 18:55:44 by gavivas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 int	ft_lstsize(t_list *lst)
 {
-	int				count;
-	struct s_list	*ptr;
+	t_list	*new;
+	int		count;
 
 	count = 0;
-	ptr = lst;
-	while (ptr)
+	new = lst;
+	while (new != NULL)
 	{
 		count++;
-		ptr = ptr->next;
+		new = new->next;
 	}
 	return (count);
 }

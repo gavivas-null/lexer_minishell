@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gojeda <gojeda@student.42madrid.com>       +#+  +:+       +#+        */
+/*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/14 14:01:00 by gojeda            #+#    #+#             */
-/*   Updated: 2025/04/14 14:01:03 by gojeda           ###   ########.fr       */
+/*   Created: 2024/08/19 18:52:27 by gavivas-          #+#    #+#             */
+/*   Updated: 2024/08/19 18:55:38 by gavivas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,12 @@
 
 t_list	*ft_lstlast(t_list *lst)
 {
-	struct s_list	*ptr;
+	t_list	*new;
 
-	ptr = lst;
-	while (ptr)
+	new = lst;
+	while (new != NULL && new->next != NULL)
 	{
-		if (!ptr->next)
-			return (ptr);
-		ptr = ptr->next;
+		new = new->next;
 	}
-	return (ptr);
+	return (new);
 }

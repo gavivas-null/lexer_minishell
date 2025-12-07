@@ -5,19 +5,19 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/12 14:49:38 by gojeda            #+#    #+#             */
-/*   Updated: 2025/12/01 21:14:42 by gavivas-         ###   ########.fr       */
+/*   Created: 2024/08/19 18:53:32 by gavivas-          #+#    #+#             */
+/*   Updated: 2025/10/27 19:48:56 by gavivas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_striteri(char *s, void (*f)(unsigned int, char*))
+void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 {
 	unsigned int	i;
 
 	i = 0;
-	while (s[i])
+	while (s[i] != '\0')
 	{
 		f(i, &s[i]);
 		i++;

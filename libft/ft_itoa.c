@@ -3,56 +3,68 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gojeda <gojeda@student.42madrid.com>       +#+  +:+       +#+        */
+/*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/11 14:28:44 by gojeda            #+#    #+#             */
-/*   Updated: 2025/04/11 14:28:46 by gojeda           ###   ########.fr       */
+/*   Created: 2024/08/19 18:51:53 by gavivas-          #+#    #+#             */
+/*   Updated: 2025/10/27 19:47:35 by gavivas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	count_len_num(long n)
+static int	ft_count_digits(int n)
 {
-	size_t	count;
+	int	count;
 
 	count = 0;
-	if (n <= 0)
-	{
-		n = -n;
-		count++;
-	}
 	while (n > 0)
 	{
+		n = n / 10;
 		count++;
-		n /= 10;
 	}
 	return (count);
 }
 
+static char	*ft_special_cases(int n)
+{
+	if (n == 0)
+		return (ft_strdup("0"));
+	else if (n == -2147483648)
+		return (ft_strdup("-2147483648"));
+	return (NULL);
+}
+
+static void	ft_while(int n, size_t len, char *new)
+{
+	while (n != 0)
+	{
+		new[--len] = n % 10 + '0';
+		n = n / 10;
+	}
+}
+
 char	*ft_itoa(int n)
 {
-	char	*str_num;
-	size_t	size;
-	long	nb;
+	int		i;
+	size_t	len;
+	char	*new;
 
-	nb = n;
-	size = count_len_num(nb);
-	str_num = (char *) malloc((size + 1) * sizeof(char));
-	if (!str_num)
+	i = 0;
+	if (n == 0 || n == -2147483648)
+		return (ft_special_cases(n));
+	if (n < 0)
+	{
+		n = -n;
+		i = 1;
+	}
+	len = ft_count_digits(n);
+	if (i == 1)
+		len += 1;
+	new = malloc(sizeof(char) * (len + 1));
+	if (new == NULL)
 		return (NULL);
-	str_num[size] = '\0';
-	if (nb == 0)
-		str_num[0] = '0';
-	else if (nb < 0)
-	{
-		nb = -nb;
-		str_num[0] = '-';
-	}
-	while (nb > 0)
-	{
-		str_num[--size] = (nb % 10) + '0';
-		nb /= 10;
-	}
-	return (str_num);
+	new[len] = '\0';
+	new[0] = '-';
+	ft_while(n, len, new);
+	return (new);
 }

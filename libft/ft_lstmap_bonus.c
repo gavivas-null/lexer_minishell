@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gojeda <gojeda@student.42madrid.com>       +#+  +:+       +#+        */
+/*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/15 12:37:47 by gojeda            #+#    #+#             */
-/*   Updated: 2025/04/15 12:37:50 by gojeda           ###   ########.fr       */
+/*   Created: 2024/08/19 18:52:30 by gavivas-          #+#    #+#             */
+/*   Updated: 2024/08/19 18:55:40 by gavivas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,22 @@
 
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	t_list	*new_lst;
-	t_list	*new_node;
-	void	*new_content;
+	t_list	*aux;
+	t_list	*final;
+	void	*fcontent;
 
-	new_lst = NULL;
-	if (lst && f && del)
+	final = 0;
+	while (lst)
 	{
-		while (lst)
+		fcontent = f(lst->content);
+		aux = ft_lstnew(fcontent);
+		if (!aux)
 		{
-			new_content = f(lst->content);
-			new_node = ft_lstnew(new_content);
-			if (!new_node)
-			{
-				del(new_content);
-				ft_lstclear(&new_lst, del);
-				return (NULL);
-			}
-			ft_lstadd_back(&new_lst, new_node);
-			lst = lst->next;
+			del(fcontent);
+			ft_lstclear(&aux, del);
 		}
+		ft_lstadd_back(&final, aux);
+		lst = lst->next;
 	}
-	return (new_lst);
+	return (final);
 }

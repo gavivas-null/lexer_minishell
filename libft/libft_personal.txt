@@ -1,0 +1,2456 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/19 18:50:50 by gavivas-          #+#    #+#             */
+/*   Updated: 2025/10/27 19:46:54 by gavivas-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+int	ft_atoi(const char *str)
+{
+	int	a;
+	int	i;
+	int	sign;
+
+	a = 0;
+	i = 0;
+	sign = 1;
+	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
+		i++;
+	if (str[i] == '+' || str[i] == '-')
+	{
+		if (str[i] == '-')
+			sign = sign * (-1);
+		i++;
+	}
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		a = a * 10 + (str[i] - '0');
+		i++;
+	}
+	return (a * sign);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_atol.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/05 18:52:38 by gavivas-          #+#    #+#             */
+/*   Updated: 2025/10/27 19:46:58 by gavivas-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+long	ft_atol(const char *str)
+{
+	long	result;
+	int		sign;
+	int		i;
+
+	result = 0;
+	sign = 1;
+	i = 0;
+	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
+		i++;
+	if (str[i] == '+' || str[i] == '-')
+	{
+		if (str[i] == '-')
+			sign = -1;
+		i++;
+	}
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		result = result * 10 + (str[i] - '0');
+		i++;
+	}
+	return (result * sign);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_atoll.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/05 18:53:03 by gavivas-          #+#    #+#             */
+/*   Updated: 2025/06/05 20:02:05 by gavivas-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+long long	ft_atoll(const char *str)
+{
+	long long	result;
+	int			sign;
+	int			i;
+
+	result = 0;
+	sign = 1;
+	i = 0;
+	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
+		i++;
+	if (str[i] == '+' || str[i] == '-')
+	{
+		if (str[i] == '-')
+			sign = -1;
+		i++;
+	}
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		result = result * 10 + (str[i] - '0');
+		i++;
+	}
+	return (result * sign);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/19 18:51:24 by gavivas-          #+#    #+#             */
+/*   Updated: 2025/10/27 19:47:03 by gavivas-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+void	ft_bzero(void *s, size_t n)
+{
+	ft_memset(s, 0, n);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_calc_bits.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/31 21:43:13 by gavivas-          #+#    #+#             */
+/*   Updated: 2025/06/01 20:00:05 by gavivas-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+int	calc_bits(int max_index)
+{
+	int	bits;
+
+	bits = 0;
+	while (max_index != 0)
+	{
+		max_index = max_index / 2;
+		bits++;
+	}
+	return (bits);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/19 18:51:29 by gavivas-          #+#    #+#             */
+/*   Updated: 2025/10/27 19:47:08 by gavivas-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+void	*ft_calloc(size_t count, size_t size)
+{
+	void	*arr;
+	size_t	totalsize;
+
+	if (size != 0 && count > SIZE_MAX / size)
+		return (NULL);
+	totalsize = count * size;
+	arr = (void *)malloc(totalsize);
+	if (arr == NULL)
+		return (NULL);
+	ft_bzero(arr, totalsize);
+	return (arr);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_free_split.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/10 19:40:42 by gavivas-          #+#    #+#             */
+/*   Updated: 2025/04/21 20:40:15 by gavivas-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+void	ft_free_split(char **split)
+{
+	int	i;
+
+	if (!split)
+		return ;
+	i = 0;
+	while (split[i])
+	{
+		free(split[i]);
+		i++;
+	}
+	free(split);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/19 18:51:33 by gavivas-          #+#    #+#             */
+/*   Updated: 2025/10/27 19:47:16 by gavivas-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+int	ft_isalnum(int c)
+{
+	if ((c >= '0' && c <= '9') || (c >= 'a' && c <= 'z')
+		|| (c >= 'A' && c <= 'Z'))
+		return (1);
+	else
+		return (0);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/19 18:51:37 by gavivas-          #+#    #+#             */
+/*   Updated: 2025/10/27 19:47:18 by gavivas-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+int	ft_isalpha(int c)
+{
+	if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
+		return (1);
+	else
+		return (0);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_isascii.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/19 18:51:40 by gavivas-          #+#    #+#             */
+/*   Updated: 2025/10/27 19:47:20 by gavivas-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+int	ft_isascii(int c)
+{
+	if (c >= 0 && c <= 127)
+		return (1);
+	else
+		return (0);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_is_bit_set.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/31 21:43:42 by gavivas-          #+#    #+#             */
+/*   Updated: 2025/06/01 20:00:09 by gavivas-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+int	is_bit_set(int index, int bit_position)
+{
+	int	i;
+	int	result;
+
+	i = 0;
+	while (i < bit_position)
+	{
+		index = index / 2;
+		i++;
+	}
+	result = index % 2;
+	return (result);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/19 18:51:44 by gavivas-          #+#    #+#             */
+/*   Updated: 2025/10/27 19:47:24 by gavivas-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+int	ft_isdigit(int c)
+{
+	if (c >= '0' && c <= '9')
+		return (1);
+	else
+		return (0);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_is_int_range.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/31 21:50:19 by gavivas-          #+#    #+#             */
+/*   Updated: 2025/06/03 18:32:23 by gavivas-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+int	is_int_range(char *str)
+{
+	long long	a;
+	int			i;
+	int			sign;
+
+	a = 0;
+	i = 0;
+	sign = 1;
+	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
+		i++;
+	if (str[i] == '+' || str[i] == '-')
+	{
+		if (str[i] == '-')
+			sign = sign * (-1);
+		i++;
+	}
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		a = a * 10 + (str[i] - '0');
+		i++;
+	}
+	if ((a * sign) > INT_MAX || (a * sign) < INT_MIN)
+		return (0);
+	return (1);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_isprime.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/05 18:53:07 by gavivas-          #+#    #+#             */
+/*   Updated: 2025/10/27 19:47:27 by gavivas-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+int	ft_isprime(int n)
+{
+	int	i;
+	int	limit;
+
+	if (n <= 1)
+		return (0);
+	if (n == 2)
+		return (1);
+	if (n % 2 == 0)
+		return (0);
+	i = 3;
+	limit = ft_sqrt(n);
+	while (i <= limit)
+	{
+		if (n % i == 0)
+			return (0);
+		i += 2;
+	}
+	return (1);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_isprint.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/19 18:51:49 by gavivas-          #+#    #+#             */
+/*   Updated: 2025/10/27 19:47:29 by gavivas-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+int	ft_isprint(int c)
+{
+	if (c >= ' ' && c <= '~')
+		return (1);
+	else
+		return (0);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_isspace.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/05 18:53:10 by gavivas-          #+#    #+#             */
+/*   Updated: 2025/06/05 20:16:14 by gavivas-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+int	ft_isspace(int c)
+{
+	if (c == ' ' || c == '\t' || c == '\n'
+		|| c == '\v' || c == '\f' || c == '\r')
+		return (1);
+	return (0);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_is_valid_number.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/31 21:48:31 by gavivas-          #+#    #+#             */
+/*   Updated: 2025/06/03 18:32:18 by gavivas-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+int	ft_is_valid_number(char *str)
+{
+	int	i;
+
+	i = 0;
+	if (!str || !str[0])
+		return (0);
+	if (str[i] == '+' || str[i] == '-')
+		i++;
+	if (str[i] == '\0')
+		return (0);
+	while (str[i])
+	{
+		if (!ft_isdigit(str[i]))
+			return (0);
+		else
+			i++;
+	}
+	return (1);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/19 18:51:53 by gavivas-          #+#    #+#             */
+/*   Updated: 2025/10/27 19:47:35 by gavivas-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+static int	ft_count_digits(int n)
+{
+	int	count;
+
+	count = 0;
+	while (n > 0)
+	{
+		n = n / 10;
+		count++;
+	}
+	return (count);
+}
+
+static char	*ft_special_cases(int n)
+{
+	if (n == 0)
+		return (ft_strdup("0"));
+	else if (n == -2147483648)
+		return (ft_strdup("-2147483648"));
+	return (NULL);
+}
+
+static void	ft_while(int n, size_t len, char *new)
+{
+	while (n != 0)
+	{
+		new[--len] = n % 10 + '0';
+		n = n / 10;
+	}
+}
+
+char	*ft_itoa(int n)
+{
+	int		i;
+	size_t	len;
+	char	*new;
+
+	i = 0;
+	if (n == 0 || n == -2147483648)
+		return (ft_special_cases(n));
+	if (n < 0)
+	{
+		n = -n;
+		i = 1;
+	}
+	len = ft_count_digits(n);
+	if (i == 1)
+		len += 1;
+	new = malloc(sizeof(char) * (len + 1));
+	if (new == NULL)
+		return (NULL);
+	new[len] = '\0';
+	new[0] = '-';
+	ft_while(n, len, new);
+	return (new);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/19 18:51:57 by gavivas-          #+#    #+#             */
+/*   Updated: 2024/08/19 18:55:28 by gavivas-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+void	ft_lstadd_back(t_list **lst, t_list *new)
+{
+	if (new)
+	{
+		if (!*lst)
+		{
+			*lst = new;
+		}
+		else
+			ft_lstlast(*lst)->next = new;
+	}
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_lstadd_front_bonus.c                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/19 18:52:00 by gavivas-          #+#    #+#             */
+/*   Updated: 2025/10/27 19:47:53 by gavivas-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+void	ft_lstadd_front(t_list **lst, t_list *new)
+{
+	if (new == NULL)
+		return ;
+	new->next = *lst;
+	*lst = new;
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/19 18:52:03 by gavivas-          #+#    #+#             */
+/*   Updated: 2024/08/19 18:55:32 by gavivas-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+void	ft_lstclear(t_list **lst, void (*del)(void *))
+{
+	t_list	*aux;
+
+	while (*lst)
+	{
+		aux = (*lst)->next;
+		ft_lstdelone(*lst, del);
+		*lst = aux;
+	}
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/19 18:52:06 by gavivas-          #+#    #+#             */
+/*   Updated: 2024/08/19 18:55:34 by gavivas-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+void	ft_lstdelone(t_list *lst, void (*del)(void *))
+{
+	del (lst->content);
+	free (lst);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/19 18:52:09 by gavivas-          #+#    #+#             */
+/*   Updated: 2024/08/19 18:55:35 by gavivas-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+void	ft_lstiter(t_list *lst, void (*f)(void *))
+{
+	while (lst)
+	{
+		f(lst->content);
+		lst = lst->next;
+	}
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/19 18:52:27 by gavivas-          #+#    #+#             */
+/*   Updated: 2024/08/19 18:55:38 by gavivas-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+t_list	*ft_lstlast(t_list *lst)
+{
+	t_list	*new;
+
+	new = lst;
+	while (new != NULL && new->next != NULL)
+	{
+		new = new->next;
+	}
+	return (new);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/19 18:52:30 by gavivas-          #+#    #+#             */
+/*   Updated: 2024/08/19 18:55:40 by gavivas-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
+{
+	t_list	*aux;
+	t_list	*final;
+	void	*fcontent;
+
+	final = 0;
+	while (lst)
+	{
+		fcontent = f(lst->content);
+		aux = ft_lstnew(fcontent);
+		if (!aux)
+		{
+			del(fcontent);
+			ft_lstclear(&aux, del);
+		}
+		ft_lstadd_back(&final, aux);
+		lst = lst->next;
+	}
+	return (final);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/19 18:52:34 by gavivas-          #+#    #+#             */
+/*   Updated: 2025/10/27 19:48:04 by gavivas-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+t_list	*ft_lstnew(void *content)
+{
+	t_list	*new;
+
+	new = malloc(sizeof(t_list));
+	if (!new)
+		return (NULL);
+	new->content = content;
+	new->next = NULL;
+	return (new);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/19 18:52:37 by gavivas-          #+#    #+#             */
+/*   Updated: 2024/08/19 18:55:44 by gavivas-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+int	ft_lstsize(t_list *lst)
+{
+	t_list	*new;
+	int		count;
+
+	count = 0;
+	new = lst;
+	while (new != NULL)
+	{
+		count++;
+		new = new->next;
+	}
+	return (count);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_max.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/05 18:53:13 by gavivas-          #+#    #+#             */
+/*   Updated: 2025/06/05 20:17:34 by gavivas-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+int	ft_max(int a, int b)
+{
+	if (a > b)
+		return (a);
+	else
+		return (b);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/19 18:52:40 by gavivas-          #+#    #+#             */
+/*   Updated: 2024/08/19 18:55:46 by gavivas-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+void	*ft_memchr(const void *s, int c, size_t n)
+{
+	const unsigned char	*ptr;
+
+	ptr = s;
+	while (n != 0)
+	{
+		if (*ptr == (unsigned char)c)
+		{
+			return ((void *)ptr);
+		}
+		ptr++;
+		n--;
+	}
+	return (NULL);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/19 18:52:43 by gavivas-          #+#    #+#             */
+/*   Updated: 2024/08/19 18:55:47 by gavivas-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
+{
+	const unsigned char	*ptr1;
+	const unsigned char	*ptr2;
+	size_t				i;
+
+	ptr1 = s1;
+	ptr2 = s2;
+	i = 0;
+	while (i < n)
+	{
+		if (ptr1[i] != ptr2[i])
+		{
+			return (ptr1[i] - ptr2[i]);
+		}
+		i++;
+	}
+	return (0);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/19 18:52:46 by gavivas-          #+#    #+#             */
+/*   Updated: 2025/10/27 19:48:11 by gavivas-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+void	*ft_memcpy(void *dst, const void *src, size_t n)
+{
+	size_t	i;
+
+	i = 0;
+	if (src == NULL && dst == NULL && n)
+		return (NULL);
+	while (i < n)
+	{
+		((unsigned char *)dst)[i] = ((unsigned char *)src)[i];
+		i++;
+	}
+	return (dst);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/19 18:52:49 by gavivas-          #+#    #+#             */
+/*   Updated: 2025/10/27 19:48:15 by gavivas-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+void	*ft_memmove(void *dst, const void *src, size_t len)
+{
+	unsigned char	*d;
+	unsigned char	*s;
+
+	d = (unsigned char *)dst;
+	s = (unsigned char *)src;
+	if (!s && !d)
+		return (0);
+	if (s > d)
+	{
+		ft_memcpy(dst, src, len);
+	}
+	else
+	{
+		while (len > 0)
+		{
+			len--;
+			d[len] = s[len];
+		}
+	}
+	return (dst);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/19 18:52:53 by gavivas-          #+#    #+#             */
+/*   Updated: 2025/10/27 19:48:19 by gavivas-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+void	*ft_memset(void *b, int c, size_t len)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < len)
+	{
+		((unsigned char *) b)[i] = c;
+		i++;
+	}
+	return (b);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_min.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/05 18:53:16 by gavivas-          #+#    #+#             */
+/*   Updated: 2025/06/05 20:18:46 by gavivas-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+int	ft_min(int a, int b)
+{
+	if (a < b)
+		return (a);
+	else
+		return (b);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_numlen.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/05 18:53:19 by gavivas-          #+#    #+#             */
+/*   Updated: 2025/06/05 20:23:08 by gavivas-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+int	ft_numlen(int n)
+{
+	long	num;
+	int		count;
+
+	num = n;
+	count = 0;
+	if (n == 0)
+		return (1);
+	if (num < 0)
+		num *= -1;
+	while (num > 0)
+	{
+		num = num / 10;
+		count++;
+	}
+	return (count);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/21 18:26:34 by gavivas-          #+#    #+#             */
+/*   Updated: 2025/04/01 19:29:21 by gavivas-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+static int	ft_if(char const *str, va_list printf_arg, int i, int *count)
+{
+	i++;
+	if (str[i] == 'c')
+		*count += ft_putchar(va_arg(printf_arg, int));
+	else if (str[i] == 's')
+		*count += ft_putstr(va_arg(printf_arg, char *));
+	else if (str[i] == 'd' || str[i] == 'i')
+		*count += ft_putnbr(va_arg(printf_arg, int));
+	else if (str[i] == 'x')
+		*count += ft_puthex(va_arg(printf_arg, unsigned int),
+				"0123456789abcdef");
+	else if (str[i] == 'X')
+		*count += ft_puthex(va_arg(printf_arg, unsigned int),
+				"0123456789ABCDEF");
+	else if (str[i] == 'u')
+		*count += ft_putunbr(va_arg(printf_arg, unsigned int));
+	else if (str[i] == 'p')
+		*count += ft_putptr(va_arg(printf_arg, void *), "0123456789abcdef");
+	else if (str[i] == '%')
+		*count += ft_putchar('%');
+	return (i);
+}
+
+int	ft_printf(char const *str, ...)
+{
+	int		i;
+	int		count;
+	va_list	printf_arg;
+
+	va_start(printf_arg, str);
+	i = 0;
+	count = 0;
+	if (str == NULL)
+		return (-1);
+	while (str && str[i] != '\0')
+	{
+		if (str[i] == '%')
+			i = ft_if(str, printf_arg, i, &count);
+		else
+			count += ft_putchar(str[i]);
+		i++;
+	}
+	va_end(printf_arg);
+	return (count);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf_utils.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/21 17:43:15 by gavivas-          #+#    #+#             */
+/*   Updated: 2025/04/01 19:57:20 by gavivas-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+int	ft_putstr(char *str)
+{
+	int	count;
+	int	i;
+
+	i = 0;
+	count = 0;
+	if (!str)
+		return (ft_putstr("(null)"));
+	while (str[i] != '\0')
+	{
+		count += ft_putchar(str[i]);
+		i++;
+	}
+	return (count);
+}
+
+int	ft_puthex(unsigned long n, const char *hex)
+{
+	int	count;
+
+	count = 0;
+	if (n >= 16)
+		count += ft_puthex(n / 16, hex);
+	count += ft_putchar(hex[n % 16]);
+	return (count);
+}
+
+int	ft_putptr(void *ptr, const char *hex)
+{
+	unsigned long	direct;
+	int				count;
+
+	direct = (unsigned long)ptr;
+	if (direct == 0)
+	{
+		count = write(1, "(nil)", 5);
+		return (count);
+	}
+	count = write(1, "0x", 2);
+	count += ft_puthex(direct, hex);
+	return (count);
+}
+
+int	ft_putnbr(int n)
+{
+	int		count;
+
+	count = 0;
+	if (n == -2147483648)
+	{
+		write(1, "-2147483648", 11);
+		return (11);
+	}
+	if (n < 0)
+	{
+		count += ft_putchar('-');
+		n = -n;
+	}
+	if (n > 9)
+		count += ft_putnbr(n / 10);
+	count += ft_putchar((n % 10) + '0');
+	return (count);
+}
+
+int	ft_putunbr(unsigned int n)
+{
+	int	count;
+
+	count = 0;
+	if (n > 9)
+		count += ft_putunbr(n / 10);
+	count += ft_putchar((n % 10) + '0');
+	return (count);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/01 19:56:52 by gavivas-          #+#    #+#             */
+/*   Updated: 2025/04/01 19:57:14 by gavivas-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+int	ft_putchar(int c)
+{
+	write (1, &c, 1);
+	return (1);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/19 18:52:56 by gavivas-          #+#    #+#             */
+/*   Updated: 2024/08/19 18:56:06 by gavivas-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+void	ft_putchar_fd(char c, int fd)
+{
+	write(fd, &c, 1);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/19 18:53:07 by gavivas-          #+#    #+#             */
+/*   Updated: 2024/08/19 18:56:08 by gavivas-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+void	ft_putendl_fd(char *s, int fd)
+{
+	ft_putstr_fd(s, fd);
+	write(fd, "\n", 1);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/19 18:53:11 by gavivas-          #+#    #+#             */
+/*   Updated: 2024/08/19 18:56:10 by gavivas-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+void	ft_putnbr_fd(int n, int fd)
+{
+	if (n == -2147483648)
+	{
+		write(fd, "-2147483648", 11);
+	}
+	else
+	{
+		if (n < 0)
+		{
+			write (fd, "-", 1);
+			n = n * -1;
+		}
+		if (n > 9)
+		{
+			ft_putnbr_fd(n / 10, fd);
+			n = n % 10;
+		}
+		if (n < 10)
+			ft_putchar_fd(n + 48, fd);
+	}
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/19 18:53:16 by gavivas-          #+#    #+#             */
+/*   Updated: 2024/08/19 18:56:12 by gavivas-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+void	ft_putstr_fd(char *s, int fd)
+{
+	int	i;
+
+	i = 0;
+	while (s[i] != '\0')
+	{
+		write(fd, &s[i], 1);
+		i++;
+	}
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/19 18:53:21 by gavivas-          #+#    #+#             */
+/*   Updated: 2025/10/27 19:48:38 by gavivas-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+static int	ft_countwords(char const *s, char c)
+{
+	int	i;
+	int	count;
+
+	i = 0;
+	count = 0;
+	while (s[i] != '\0')
+	{
+		if (s[i] != c && (s[i + 1] == c || s[i + 1] == '\0'))
+			count++;
+		i++;
+	}
+	return (count);
+}
+
+static char	*ft_copywords(char const *s, char c, int *i)
+{
+	char	*new;
+	int		j;
+
+	while (s[*i] != '\0' && s[*i] == c)
+		(*i)++;
+	j = *i;
+	while (s[j] != '\0' && s[j] != c)
+		j++;
+	new = ft_substr(s, *i, j - *i);
+	if (!new)
+		return (NULL);
+	*i = j;
+	return (new);
+}
+
+static void	ft_free(char **new, int count)
+{
+	while (count >= 0)
+	{
+		free(new[count]);
+		count--;
+	}
+	free(new);
+}
+
+char	**ft_split(char const *s, char c)
+{
+	int		i;
+	int		j;
+	int		count;
+	char	**new;
+
+	count = ft_countwords(s, c);
+	new = ft_calloc(sizeof(char *), count + 1);
+	if (new == NULL)
+		return (NULL);
+	i = 0;
+	j = 0;
+	while (j < count)
+	{
+		new[j] = ft_copywords(s, c, &i);
+		if (!new[j])
+			return (ft_free(new, j - 1), NULL);
+		j++;
+	}
+	return (new);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_splitlen.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/01 21:12:49 by gavivas-          #+#    #+#             */
+/*   Updated: 2025/04/01 21:14:32 by gavivas-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+int	ft_splitlen(char **split)
+{
+	int	len;
+
+	len = 0;
+	while (split[len])
+		len++;
+	return (len);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_sqrt.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/02 21:59:32 by gavivas-          #+#    #+#             */
+/*   Updated: 2025/06/02 22:00:32 by gavivas-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+int	ft_sqrt(int num)
+{
+	int	i;
+
+	if (num < 4)
+		return (1);
+	i = 2;
+	while (i * i <= num)
+		i++;
+	return (i - 1);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strcat.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/05 18:53:24 by gavivas-          #+#    #+#             */
+/*   Updated: 2025/06/05 20:52:35 by gavivas-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+char	*ft_strcat(char *dest, const char *src)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (dest[i] != '\0')
+		i++;
+	while (src[j] != '\0')
+	{
+		dest[i] = src[j];
+		i++;
+		j++;
+	}
+	dest[i] = '\0';
+	return (dest);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/19 18:53:25 by gavivas-          #+#    #+#             */
+/*   Updated: 2025/10/27 19:48:45 by gavivas-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+char	*ft_strchr(const char *s, int c)
+{
+	int				a;
+	unsigned char	l;
+
+	l = c;
+	a = 0;
+	while (s[a] != '\0' && s[a] != l)
+	{
+		a++;
+	}
+	if (s[a] == l)
+		return ((char *)&s[a]);
+	return (NULL);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/05 18:53:29 by gavivas-          #+#    #+#             */
+/*   Updated: 2025/06/05 20:59:00 by gavivas-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+int	ft_strcmp(const char *s1, const char *s2)
+{
+	int	i;
+
+	i = 0;
+	while ((s1[i] != '\0' && s2[i] != '\0') && s1[i] == s2[i])
+		i++;
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strcount.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/05 18:53:33 by gavivas-          #+#    #+#             */
+/*   Updated: 2025/06/05 21:08:00 by gavivas-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+int	ft_strcount(const char *str, char c)
+{
+	int	i;
+	int	count;
+
+	i = 0;
+	count = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] == c)
+			count++;
+		i++;
+	}
+	return (count);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strcpy.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/05 18:53:41 by gavivas-          #+#    #+#             */
+/*   Updated: 2025/06/05 21:02:24 by gavivas-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+char	*ft_strcpy(char *dst, const char *src)
+{
+	int	i;
+
+	i = 0;
+	while (src[i] != '\0')
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	dst[i] = '\0';
+	return (dst);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/19 18:53:28 by gavivas-          #+#    #+#             */
+/*   Updated: 2025/10/27 19:48:52 by gavivas-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+char	*ft_strdup(const char *s1)
+{
+	size_t	size;
+	size_t	i;
+	char	*cpy;
+
+	i = 0;
+	size = ft_strlen(s1) + 1;
+	cpy = malloc(sizeof(char) * size);
+	if (cpy == NULL)
+		return (NULL);
+	while (s1[i] != '\0')
+	{
+		cpy[i] = s1[i];
+		i++;
+	}
+	cpy[i] = '\0';
+	return (cpy);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/19 18:53:32 by gavivas-          #+#    #+#             */
+/*   Updated: 2025/10/27 19:48:56 by gavivas-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+void	ft_striteri(char *s, void (*f)(unsigned int, char *))
+{
+	unsigned int	i;
+
+	i = 0;
+	while (s[i] != '\0')
+	{
+		f(i, &s[i]);
+		i++;
+	}
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/19 18:53:36 by gavivas-          #+#    #+#             */
+/*   Updated: 2024/08/19 18:56:31 by gavivas-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+char	*ft_strjoin(char const *s1, char const *s2)
+{
+	char	*newstr;
+	size_t	len;
+	size_t	slen;
+
+	len = ft_strlen(s1);
+	slen = ft_strlen(s2);
+	newstr = malloc(sizeof(char) * (len + slen + 1));
+	if (newstr == NULL)
+		return (NULL);
+	ft_memcpy(newstr, s1, len);
+	ft_memcpy(newstr + len, s2, slen + 1);
+	return (newstr);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strjoin_free.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/12 20:11:49 by gavivas-          #+#    #+#             */
+/*   Updated: 2025/05/12 20:11:53 by gavivas-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+char	*ft_strjoin_free(char *s1, char *s2)
+{
+	char	*result;
+
+	if (!s1 || !s2)
+		return (NULL);
+	result = ft_strjoin(s1, s2);
+	free(s1);
+	return (result);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/03 16:04:57 by gavivas-          #+#    #+#             */
+/*   Updated: 2024/08/19 20:40:25 by gavivas-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
+{
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	j = 0;
+	if (src == NULL && dst == NULL)
+		return (0);
+	while (dst[i] != '\0' && i < dstsize)
+	{
+		i++;
+	}
+	if (i < dstsize)
+	{
+		while (src[j] != '\0' && i + j < dstsize - 1)
+		{
+			dst[i + j] = src[j];
+			j++;
+		}
+		dst[i + j] = '\0';
+	}
+	return (i + ft_strlen(src));
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/19 18:53:48 by gavivas-          #+#    #+#             */
+/*   Updated: 2025/10/27 19:49:02 by gavivas-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+{
+	size_t	i;
+
+	i = 0;
+	if (dstsize < 1)
+		return (ft_strlen(src));
+	while (i < (dstsize - 1) && src[i] != '\0')
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	dst[i] = '\0';
+	return (ft_strlen(src));
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/19 18:53:53 by gavivas-          #+#    #+#             */
+/*   Updated: 2025/10/27 19:49:06 by gavivas-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+size_t	ft_strlen(const char *s)
+{
+	int	a;
+
+	a = 0;
+	while (s[a] != '\0')
+	{
+		a++;
+	}
+	return (a);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/19 18:54:11 by gavivas-          #+#    #+#             */
+/*   Updated: 2024/08/19 18:56:42 by gavivas-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+{
+	char	*newstr;
+	size_t	len;
+	size_t	i;
+
+	i = 0;
+	len = ft_strlen(s);
+	newstr = malloc(sizeof(char) * len + 1);
+	if (newstr == NULL)
+		return (NULL);
+	while (i < len)
+	{
+		newstr[i] = f(i, s[i]);
+		i++;
+	}
+	newstr[i] = '\0';
+	return (newstr);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/19 18:54:15 by gavivas-          #+#    #+#             */
+/*   Updated: 2024/08/19 18:56:44 by gavivas-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
+{
+	size_t	i;
+
+	i = 0;
+	while ((s1[i] != '\0' || s2[i] != '\0') && i < n)
+	{
+		if (((unsigned char *)s1)[i] > ((unsigned char *)s2)[i])
+			return (1);
+		else if (((unsigned char *)s1)[i] < ((unsigned char *)s2)[i])
+			return (-1);
+		i++;
+	}
+	return (0);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/19 18:54:20 by gavivas-          #+#    #+#             */
+/*   Updated: 2024/08/19 18:56:46 by gavivas-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
+{
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	if (*needle == '\0')
+		return ((char *)haystack);
+	if (*haystack == '\0')
+		return (NULL);
+	while (*haystack != '\0' && i < len)
+	{
+		j = 0;
+		while ((haystack[i] != '\0' && needle[j] != '\0')
+			&& haystack[i + j] == needle[j] && (i + j) < len)
+		{
+			j++;
+		}
+		if (needle[j] == '\0')
+			return ((char *)&haystack[i]);
+		i++;
+	}
+	return (NULL);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/19 18:54:29 by gavivas-          #+#    #+#             */
+/*   Updated: 2025/10/27 19:49:11 by gavivas-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+char	*ft_strrchr(const char *s, int c)
+{
+	int		a;
+	char	l;
+
+	l = c;
+	a = ft_strlen(s);
+	while (a >= 0)
+	{
+		if (s[a] == l)
+			return ((char *)&s[a]);
+		a--;
+	}
+	return (NULL);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strrev.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/05 18:53:45 by gavivas-          #+#    #+#             */
+/*   Updated: 2025/06/05 21:34:13 by gavivas-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+char	*ft_strrev(char *str)
+{
+	int		i;
+	int		j;
+	char	tmp;
+
+	i = 0;
+	j = ft_strlen(str) - 1;
+	while (i < j)
+	{
+		tmp = str[i];
+		str[i] = str[j];
+		str[j] = tmp;
+		i++;
+		j--;
+	}
+	return (str);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/19 18:54:33 by gavivas-          #+#    #+#             */
+/*   Updated: 2024/08/19 18:56:50 by gavivas-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+char	*ft_strtrim(char const *s1, char const *set)
+{
+	size_t	i;
+	size_t	j;
+
+	if (s1 == NULL || set == NULL)
+		return (NULL);
+	i = 0;
+	while (s1[i] && ft_strchr(set, s1[i]))
+		i++;
+	j = ft_strlen(s1);
+	while (j > 0 && ft_strchr(set, s1[j]))
+		j--;
+	return (ft_substr(s1, i, j - i + 1));
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/19 18:54:38 by gavivas-          #+#    #+#             */
+/*   Updated: 2025/10/27 19:49:16 by gavivas-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+char	*ft_substr(char const *s, unsigned int start, size_t len)
+{
+	char	*substr;
+	size_t	slen;
+
+	if (s == NULL)
+		return (NULL);
+	slen = ft_strlen(s);
+	if (start > slen)
+		return (ft_strdup(""));
+	if (slen - start < len)
+		len = slen - start;
+	substr = malloc(sizeof(char) * len + 1);
+	if (substr == NULL)
+		return (NULL);
+	ft_strlcpy(substr, &s[start], len + 1);
+	return (substr);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_swap_int.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/05 18:53:49 by gavivas-          #+#    #+#             */
+/*   Updated: 2025/06/05 21:36:58 by gavivas-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+void	ft_swap_int(int *a, int *b)
+{
+	int	tmp;
+
+	tmp = *a;
+	*a = *b;
+	*b = tmp;
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_swap_ptr.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/05 18:53:52 by gavivas-          #+#    #+#             */
+/*   Updated: 2025/06/05 21:41:13 by gavivas-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+void	ft_swap_ptr(void **a, void **b)
+{
+	void	*tmp;
+
+	tmp = *a;
+	*a = *b;
+	*b = tmp;
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_tolower.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/19 18:54:42 by gavivas-          #+#    #+#             */
+/*   Updated: 2025/10/27 19:49:22 by gavivas-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+int	ft_tolower(int c)
+{
+	if (c >= 'A' && c <= 'Z')
+		c = c + 32;
+	return (c);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_toupper.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/19 18:54:46 by gavivas-          #+#    #+#             */
+/*   Updated: 2025/10/27 19:49:25 by gavivas-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+int	ft_toupper(int c)
+{
+	if (c >= 'a' && c <= 'z')
+		c = c - 32;
+	return (c);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/25 19:47:45 by gavivas-          #+#    #+#             */
+/*   Updated: 2025/04/01 19:58:09 by gavivas-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+static char	*ft_extract_line(char **data, char *buff, ssize_t count)
+{
+	char		*tmp;
+	char		*endline;
+	char		*newline;
+
+	buff[count] = '\0';
+	tmp = ft_gnl_strjoin(*data, buff);
+	if (!tmp)
+		return (free(buff), NULL);
+	*data = tmp;
+	endline = ft_gnl_strchr(*data, '\n');
+	if (endline)
+	{
+		newline = ft_gnl_substr(*data, 0, (endline - *data) + 1);
+		tmp = ft_gnl_substr(*data, (endline - *data) + 1,
+				ft_gnl_strlen(endline + 1));
+		free(*data);
+		*data = tmp;
+		return (newline);
+	}
+	return (NULL);
+}
+
+static char	*ft_rest_of_data(char **data)
+{
+	char	*newline;
+
+	if (*data && **data)
+	{
+		newline = ft_gnl_substr(*data, 0, ft_gnl_strlen(*data));
+		free(*data);
+		*data = NULL;
+		return (newline);
+	}
+	else if (*data)
+	{
+		free(*data);
+		*data = NULL;
+	}
+	return (NULL);
+}
+
+static char	*ft_while(int fd, char **data, char *buff)
+{
+	ssize_t		count;
+	char		*newline;
+
+	while (1)
+	{
+		count = read(fd, buff, BUFFER_SIZE);
+		if ((count < 0) || (count == 0 && !ft_gnl_strchr(*data, '\n')))
+		{
+			free(buff);
+			if (count < 0)
+			{
+				free(*data);
+				*data = NULL;
+				return (NULL);
+			}
+			break ;
+		}
+		newline = ft_extract_line(data, buff, count);
+		if (newline)
+			return (free(buff), newline);
+	}
+	return (ft_rest_of_data(data));
+}
+
+char	*get_next_line(int fd)
+{
+	static char	*data = NULL;
+	char		*buff;
+
+	if (BUFFER_SIZE <= 0 || fd < 0)
+		return (NULL);
+	buff = ft_calloc((BUFFER_SIZE + 1), sizeof(char));
+	if (!buff)
+		return (NULL);
+	return (ft_while(fd, &data, buff));
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/25 19:47:34 by gavivas-          #+#    #+#             */
+/*   Updated: 2025/04/01 19:52:18 by gavivas-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+size_t	ft_gnl_strlen(const char *s)
+{
+	size_t	a;
+
+	if (!s)
+		return (0);
+	a = 0;
+	while (s[a] != '\0')
+		a++;
+	return (a);
+}
+
+char	*ft_gnl_strchr(const char *s, int c)
+{
+	size_t			a;
+	unsigned char	l;
+
+	l = c;
+	a = 0;
+	if (!s)
+		return (NULL);
+	while (s[a] != '\0' && s[a] != l)
+		a++;
+	if (s[a] == l)
+		return ((char *)&s[a]);
+	return (NULL);
+}
+
+char	*ft_gnl_substr(const char *s, unsigned int start, size_t len)
+{
+	size_t	s_len;
+	char	*substr;
+	size_t	i;
+
+	s_len = ft_gnl_strlen(s);
+	if (s == NULL)
+		return (NULL);
+	i = 0;
+	while (s[i] != '\0')
+		i++;
+	if (start >= s_len)
+		len = 0;
+	else if (start + len > s_len)
+		len = s_len - start;
+	substr = (char *)malloc((len + 1) * sizeof(char));
+	if (substr == NULL)
+		return (NULL);
+	i = 0;
+	while (i < len && s[start + i] != '\0')
+	{
+		substr[i] = s[start + i];
+		i++;
+	}
+	substr[i] = '\0';
+	return (substr);
+}
+
+char	*ft_gnl_strjoin(char *s1, char *s2)
+{
+	int		size_s1;
+	int		size_s2;
+	char	*str;
+	int		i;
+	int		j;
+
+	size_s1 = ft_gnl_strlen(s1);
+	size_s2 = ft_gnl_strlen(s2);
+	str = malloc(sizeof(char) * (size_s1 + size_s2 + 1));
+	if (!str)
+		return (NULL);
+	i = 0;
+	j = 0;
+	while (i < size_s1)
+		str[i++] = s1[j++];
+	j = 0;
+	while (j < size_s2)
+		str[i++] = s2[j++];
+	str[i] = '\0';
+	free(s1);
+	return (str);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   libft.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/19 18:57:22 by gavivas-          #+#    #+#             */
+/*   Updated: 2025/06/05 21:42:17 by gavivas-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef LIBFT_H
+# define LIBFT_H
+# include <stdlib.h>
+# include <string.h>
+# include <unistd.h>
+# include <stdint.h>
+# include <fcntl.h>
+# include <stdarg.h>
+# include <limits.h>
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE  42
+# endif
+
+//------------------------libft------------------------
+
+void		ft_bzero(void *s, size_t n);
+int			ft_isalnum(int c);
+int			ft_isalpha(int c);
+int			ft_isascii(int c);
+int			ft_isdigit(int c);
+int			ft_isprint(int c);
+void		*ft_memcpy(void *dst, const void *src, size_t n);
+void		*ft_memmove(void *dst, const void *src, size_t len);
+void		*ft_memset(void *b, int c, size_t len);
+char		*ft_strchr(const char *s, int c);
+size_t		ft_strlcpy(char *dst, const char *src, size_t dstsize);
+size_t		ft_strlen(const char *s);
+char		*ft_strrchr(const char *s, int c);
+int			ft_tolower(int c);
+int			ft_toupper(int c);
+size_t		ft_strlcat(char *dst, const char *src, size_t dstsize);
+int			ft_strncmp(const char *s1, const char *s2, size_t n);
+int			ft_memcmp(const void *s1, const void *s2, size_t n);
+char		*ft_strnstr(const char *haystack, const char *needle, size_t len);
+int			ft_atoi(const char *str);
+void		*ft_calloc(size_t count, size_t size);
+char		*ft_strdup(const char *s1);
+char		*ft_substr(char const *s, unsigned int start, size_t len);
+char		*ft_strjoin(char const *s1, char const *s2);
+char		*ft_strtrim(char const *s1, char const *set);
+void		*ft_memchr(const void *s, int c, size_t n);
+void		ft_putchar_fd(char c, int fd);
+void		ft_putstr_fd(char *s, int fd);
+void		ft_putendl_fd(char *s, int fd);
+void		ft_putnbr_fd(int n, int fd);
+void		ft_striteri(char *s, void (*f)(unsigned int, char *));
+char		*ft_strmapi(char const *s, char (*f)(unsigned int, char));
+char		*ft_itoa(int n);
+char		**ft_split(char const *s, char c);
+typedef struct s_list
+{
+	void			*content;
+	struct s_list	*next;
+}	t_list;
+t_list		*ft_lstnew(void *content);
+void		ft_lstadd_front(t_list **lst, t_list *new);
+int			ft_lstsize(t_list *lst);
+t_list		*ft_lstlast(t_list *lst);
+void		ft_lstadd_back(t_list **lst, t_list *new);
+void		ft_lstdelone(t_list *lst, void (*del)(void *));
+void		ft_lstclear(t_list **lst, void (*del)(void *));
+void		ft_lstiter(t_list *lst, void (*f)(void *));
+t_list		*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+
+//------------------------get_next_line------------------------
+
+char		*get_next_line(int fd);
+size_t		ft_gnl_strlen(const char *s);
+char		*ft_gnl_strjoin(char *s1, char *s2);
+char		*ft_gnl_strchr(const char *s, int c);
+char		*ft_gnl_substr(char const *s, unsigned int start, size_t len);
+
+//------------------------ft_printf------------------------
+
+int			ft_printf(char const *str, ...);
+int			ft_putchar(int c);
+int			ft_putnbr(int n);
+int			ft_putunbr(unsigned int n);
+int			ft_putptr(void *ptr, const char *hex);
+int			ft_putstr(char *str);
+int			ft_puthex(unsigned long n, const char *hex);
+
+//------------------------extras------------------------
+
+void		ft_free_split(char **split);
+char		*ft_strjoin_free(char *s1, char *s2);
+int			calc_bits(int max_index);
+int			is_bit_set(int index, int bit_position);
+int			ft_is_valid_number(char *str);
+int			is_int_range(char *str);
+int			ft_sqrt(int num);
+long		ft_atol(const char *str);
+long long	ft_atoll(const char *str);
+int			ft_isspace(int c);
+int			ft_isprime(int n);
+int			ft_max(int a, int b);
+int			ft_min(int a, int b);
+int			ft_numlen(int n);
+char		*ft_strcat(char *dest, const char *src);
+int			ft_strcmp(const char *s1, const char *s2);
+int			ft_strcount(const char *str, char c);
+char		*ft_strcpy(char *dst, const char *src);
+char		*ft_strrev(char *str);
+void		ft_swap_int(int *a, int *b);
+void		ft_swap_ptr(void **a, void **b);
+
+#endif
+NAME =	libft.a
+
+SRC			=	ft_bzero.c\
+				ft_isalnum.c\
+				ft_isalpha.c\
+				ft_isascii.c\
+				ft_isdigit.c\
+				ft_isprint.c\
+				ft_memcpy.c\
+				ft_memmove.c\
+				ft_memset.c\
+				ft_strchr.c\
+				ft_strrchr.c\
+				ft_strlen.c\
+				ft_tolower.c\
+				ft_toupper.c\
+				ft_strlcpy.c\
+				ft_strlcat.c\
+				ft_strncmp.c\
+				ft_memchr.c\
+				ft_memcmp.c\
+				ft_strnstr.c\
+				ft_atoi.c \
+				ft_calloc.c \
+				ft_strdup.c \
+				ft_substr.c\
+				ft_strjoin.c\
+				ft_strtrim.c \
+				ft_putchar_fd.c \
+				ft_putstr_fd.c \
+				ft_putendl_fd.c  \
+				ft_putnbr_fd.c \
+				ft_striteri.c \
+				ft_strmapi.c \
+				ft_itoa.c \
+				ft_split.c \
+
+SRCBONUS	=	ft_lstnew_bonus.c \
+				ft_lstadd_front_bonus.c \
+				ft_lstsize_bonus.c \
+				ft_lstlast_bonus.c \
+				ft_lstadd_back_bonus.c \
+				ft_lstdelone_bonus.c \
+				ft_lstclear_bonus.c \
+				ft_lstiter_bonus.c \
+				ft_lstmap_bonus.c \
+
+SRCPRINTF 	=	ft_printf.c \
+				ft_printf_utils.c \
+				ft_putchar.c \
+
+SRCGNL		=	get_next_line.c \
+				get_next_line_utils.c \
+
+SRCETC		= 	ft_free_split.c \
+				ft_strjoin_free.c \
+				ft_calc_bits.c \
+				ft_is_bit_set.c \
+				ft_is_int_range.c \
+				ft_is_valid_number.c \
+				ft_sqrt.c \
+				ft_atol.c \
+				ft_atoll.c \
+				ft_isspace.c \
+				ft_isprime.c \
+				ft_max.c \
+				ft_min.c \
+				ft_numlen.c \
+				ft_strcat.c \
+				ft_strcmp.c \
+				ft_strcount.c \
+				ft_strcpy.c \
+				ft_strrev.c \
+				ft_swap_int.c \
+				ft_swap_ptr.c \
+
+SRCALL	=	$(SRC) $(SRCBONUS) $(SRCPRINTF) $(SRCGNL) $(SRCETC)
+OBJ	=	$(SRCALL:.c=.o)
+CC	 =	cc
+AR = ar
+CFLAGS	=	-Wall -Werror -Wextra
+ARFLAG = -rcs
+
+# --------------------------------------------------------------
+# 👇 Regla principal
+# --------------------------------------------------------------
+all: ${NAME}
+
+${NAME}: ${OBJ}
+	$(AR) $(ARFLAG) $(NAME) $(OBJ)
+
+# --------------------------------------------------------------
+# 🧹 Limpieza
+# --------------------------------------------------------------
+
+clean:
+	rm -f ${OBJ}
+fclean: clean 
+	rm -f ${NAME}
+re: fclean all
+
+.PHONY: all clean fclean re

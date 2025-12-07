@@ -3,80 +3,77 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gojeda <gojeda@student.42madrid.com>       +#+  +:+       +#+        */
+/*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/11 14:13:19 by gojeda            #+#    #+#             */
-/*   Updated: 2025/04/11 14:13:20 by gojeda           ###   ########.fr       */
+/*   Created: 2024/08/19 18:53:21 by gavivas-          #+#    #+#             */
+/*   Updated: 2025/10/27 19:48:38 by gavivas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_count_words(char const *s, char c)
+static int	ft_countwords(char const *s, char c)
 {
+	int	i;
 	int	count;
-	int	in_word;
 
+	i = 0;
 	count = 0;
-	in_word = 0;
-	while (*s)
+	while (s[i] != '\0')
 	{
-		if (*s != c && in_word == 0)
-		{
-			in_word = 1;
+		if (s[i] != c && (s[i + 1] == c || s[i + 1] == '\0'))
 			count++;
-		}
-		else if (*s == c)
-			in_word = 0;
-		s++;
+		i++;
 	}
 	return (count);
 }
 
-static char	*ft_save_word(const char **s, char c)
+static char	*ft_copywords(char const *s, char c, int *i)
 {
-	const char	*start;
-	const char	*end;
-	char		*word;	
+	char	*new;
+	int		j;
 
-	start = *s;
-	while (*start && *start == c)
-		start++;
-	end = start;
-	while (*end && *end != c)
-		end++;
-	word = ft_substr(start, 0, end - start);
-	if (!word)
+	while (s[*i] != '\0' && s[*i] == c)
+		(*i)++;
+	j = *i;
+	while (s[j] != '\0' && s[j] != c)
+		j++;
+	new = ft_substr(s, *i, j - *i);
+	if (!new)
 		return (NULL);
-	*s = end;
-	return (word);
+	*i = j;
+	return (new);
+}
+
+static void	ft_free(char **new, int count)
+{
+	while (count >= 0)
+	{
+		free(new[count]);
+		count--;
+	}
+	free(new);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	char	**ptr;
 	int		i;
-	int		word_count;
+	int		j;
+	int		count;
+	char	**new;
 
-	if (!s)
-		return (NULL);
-	word_count = ft_count_words(s, c);
-	ptr = (char **) malloc((word_count + 1) * sizeof(char *));
-	if (!ptr)
+	count = ft_countwords(s, c);
+	new = ft_calloc(sizeof(char *), count + 1);
+	if (new == NULL)
 		return (NULL);
 	i = 0;
-	while (i < word_count)
+	j = 0;
+	while (j < count)
 	{
-		ptr[i] = ft_save_word(&s, c);
-		if (!ptr[i])
-		{
-			while (i > 0)
-				free(ptr[--i]);
-			free(ptr);
-			return (NULL);
-		}
-		i++;
+		new[j] = ft_copywords(s, c, &i);
+		if (!new[j])
+			return (ft_free(new, j - 1), NULL);
+		j++;
 	}
-	ptr[i] = NULL;
-	return (ptr);
+	return (new);
 }

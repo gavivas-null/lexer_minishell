@@ -3,77 +3,58 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gojeda <gojeda@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/21 13:51:43 by gojeda            #+#    #+#             */
-/*   Updated: 2025/05/30 21:53:53 by gojeda           ###   ########.fr       */
+/*   Created: 2025/01/21 18:26:34 by gavivas-          #+#    #+#             */
+/*   Updated: 2025/04/01 19:29:21 by gavivas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_validate_format(char c)
+static int	ft_if(char const *str, va_list printf_arg, int i, int *count)
 {
-	return (c && (c == 'c' || c == 's' || c == 'p' || c == 'd' || c == 'i'
-			|| c == 'u' || c == 'x' || c == 'X' || c == '%'));
+	i++;
+	if (str[i] == 'c')
+		*count += ft_putchar(va_arg(printf_arg, int));
+	else if (str[i] == 's')
+		*count += ft_putstr(va_arg(printf_arg, char *));
+	else if (str[i] == 'd' || str[i] == 'i')
+		*count += ft_putnbr(va_arg(printf_arg, int));
+	else if (str[i] == 'x')
+		*count += ft_puthex(va_arg(printf_arg, unsigned int),
+				"0123456789abcdef");
+	else if (str[i] == 'X')
+		*count += ft_puthex(va_arg(printf_arg, unsigned int),
+				"0123456789ABCDEF");
+	else if (str[i] == 'u')
+		*count += ft_putunbr(va_arg(printf_arg, unsigned int));
+	else if (str[i] == 'p')
+		*count += ft_putptr(va_arg(printf_arg, void *), "0123456789abcdef");
+	else if (str[i] == '%')
+		*count += ft_putchar('%');
+	return (i);
 }
 
-static int	ft_control_hex(char c, va_list args)
+int	ft_printf(char const *str, ...)
 {
-	unsigned int	num;
-
-	num = va_arg(args, unsigned int);
-	if (c == 'x')
-		ft_putnbr_base_unsigned(num, "0123456789abcdef");
-	else
-		ft_putnbr_base_unsigned(num, "0123456789ABCDEF");
-	return (ft_count_hex_digits(num));
-}
-
-static int	ft_control_format(char c, va_list args)
-{
-	int	num;
-
-	if (c == 'c')
-		return (ft_putchar(va_arg(args, int)));
-	else if (c == 's')
-		return (ft_putstr(va_arg(args, char *)));
-	else if (c == 'p')
-		return (ft_putptr(va_arg(args, void *)));
-	else if (c == 'd' || c == 'i')
-	{
-		num = va_arg(args, int);
-		ft_putnbr_base(num, "0123456789");
-		return (ft_count_digits(num));
-	}
-	else if (c == 'u')
-		return (ft_putunsigned(va_arg(args, unsigned int)));
-	else if (c == 'X' || c == 'x')
-		return (ft_control_hex(c, args));
-	else if (c == '%')
-		return (write(1, "%", 1));
-	return (0);
-}
-
-int	ft_printf(const char *format, ...)
-{
-	va_list	args;
 	int		i;
 	int		count;
+	va_list	printf_arg;
 
-	va_start(args, format);
+	va_start(printf_arg, str);
 	i = 0;
 	count = 0;
-	while (format[i])
+	if (str == NULL)
+		return (-1);
+	while (str && str[i] != '\0')
 	{
-		if (format[i] == '%' && ft_validate_format(format[i + 1]))
-			count += ft_control_format(format[++i], args);
-		else if (format[i] == '%')
-			return (-1);
+		if (str[i] == '%')
+			i = ft_if(str, printf_arg, i, &count);
 		else
-			count += write(1, &format[i], 1);
+			count += ft_putchar(str[i]);
 		i++;
 	}
-	va_end(args);
+	va_end(printf_arg);
 	return (count);
 }

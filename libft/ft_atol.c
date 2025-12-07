@@ -5,33 +5,33 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/10 15:20:03 by gojeda            #+#    #+#             */
-/*   Updated: 2025/12/01 21:15:29 by gavivas-         ###   ########.fr       */
+/*   Created: 2025/06/05 18:52:38 by gavivas-          #+#    #+#             */
+/*   Updated: 2025/10/27 19:46:58 by gavivas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-long	ft_atol(const char *nptr)
+long	ft_atol(const char *str)
 {
-	int		i;
-	int		sign;
 	long	result;
+	int		sign;
+	int		i;
 
-	sign = 1;
 	result = 0;
+	sign = 1;
 	i = 0;
-	while (nptr[i] && (nptr[i] == ' ' || (nptr[i] >= 9 && nptr[i] <= 13)))
+	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
 		i++;
-	if (nptr[i] && (nptr[i] == '-' || nptr[i] == '+'))
+	if (str[i] == '+' || str[i] == '-')
 	{
-		if (nptr[i] == '-')
+		if (str[i] == '-')
 			sign = -1;
 		i++;
 	}
-	while (nptr[i] && (nptr[i] >= '0' && nptr[i] <= '9'))
+	while (str[i] >= '0' && str[i] <= '9')
 	{
-		result = result * 10 + (nptr[i] - '0');
+		result = result * 10 + (str[i] - '0');
 		i++;
 	}
 	return (result * sign);
