@@ -6,7 +6,7 @@
 /*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/30 18:03:06 by gojeda            #+#    #+#             */
-/*   Updated: 2025/12/01 19:14:03 by gavivas-         ###   ########.fr       */
+/*   Updated: 2025/12/07 18:15:11 by gavivas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@ int	lexer_add_char(t_lexer *lx, char c)
 
 	new = malloc(lx->word_len + 2);
 	if (!new)
+	{
+		lx->error = 1;
 		return (0);
+	}
 	if (lx->word)
 	{
 		ft_memcpy(new, lx->word, lx->word_len);

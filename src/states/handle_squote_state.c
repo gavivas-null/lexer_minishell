@@ -6,7 +6,7 @@
 /*   By: gavivas- <gavivas-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/30 16:41:04 by gojeda            #+#    #+#             */
-/*   Updated: 2025/12/01 19:15:32 by gavivas-         ###   ########.fr       */
+/*   Updated: 2025/12/07 18:54:59 by gavivas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	handle_in_squote(t_lexer *lx, const char *line,
 		(*i)++;
 		return ;
 	}
-	lexer_add_char(lx, line[*i]);
+	if (!lexer_add_char(lx, line[*i]))
+		return ;
 	(*i)++;
 }
